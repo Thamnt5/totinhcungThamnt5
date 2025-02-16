@@ -108,30 +108,24 @@
             disagreeCount++;
         }
 
-       function closePopup() {
-    popup.style.display = "none"; // Đóng popup
-    createFloatingHearts(); // Gọi hàm tạo trái tim bay
-}
-
-function createFloatingHearts() {
-    for (let i = 0; i < 10; i++) { // Tạo 10 trái tim
-        let heart = document.createElement("div");
-        heart.innerHTML = "❤️";
-        heart.classList.add("heart");
-        
-        // Đặt vị trí ngẫu nhiên gần popup
-        let xOffset = Math.random() * 100 - 50; // Dịch trái/phải 50px
-        let yOffset = Math.random() * 20 - 10; // Dịch lên/xuống 10px
-        
-        heart.style.left = `calc(50% + ${xOffset}px)`;
-        heart.style.top = `calc(50% + ${yOffset}px)`;
-        heart.style.position = "fixed";
-        
-        document.body.appendChild(heart);
-        
-        // Xóa trái tim sau khi animation kết thúc
-        setTimeout(() => heart.remove(), 2000);
-    }
+        function createFloatingHearts() {
+            for (let i = 0; i < 10; i++) { // Tạo 10 trái tim
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("heart");
+                
+                // Đặt vị trí ngẫu nhiên với khoảng cách rộng hơn
+                let xOffset = Math.random() * 1000 - 150; // Dịch trái/phải trong khoảng 1000px
+                let yOffset = Math.random() * 2000 - 100; // Dịch lên/xuống trong khoảng 2000px
+                
+                heart.style.left = `calc(50% + ${xOffset}px)`;
+                heart.style.top = `calc(50% + ${yOffset}px)`;
+                heart.style.position = "fixed";
+                
+                document.body.appendChild(heart);
+                
+                // Xóa trái tim sau khi animation kết thúc
+                setTimeout(() => heart.remove(), 9000);
             }
         }
     </script>
