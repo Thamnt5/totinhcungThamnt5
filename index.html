@@ -57,13 +57,9 @@
         }
         .heart {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1000px;
-            color: purple;
+            font-size: 30px;
+            color: red;
             animation: heartBeat 1s infinite alternate;
-            text-shadow: 0 0 30px violet, 0 0 60px purple, 0 0 90px darkmagenta;
         }
     </style>
 </head>
@@ -76,7 +72,7 @@
     <!-- Popup -->
     <div id="popup" class="popup">
         <p>Tuyệt vời! Vậy mình cùng đi chơi nhé ❤️</p>
-        <button onclick="closePopup(); showHeart();"> Ấu cơ nhaa 😘</button>
+        <button onclick="closePopup();"> Ấu cơ nhaa 😘</button>
     </div>
 
     <script>
@@ -91,6 +87,7 @@
 
         function closePopup() {
             popup.style.display = "none";
+            createFloatingHearts(); // Gọi hàm tạo trái tim bay
         }
 
         function refuseLove() {
@@ -111,11 +108,31 @@
             disagreeCount++;
         }
 
-        function showHeart() {
-            let heart = document.createElement("div");
-            heart.innerHTML = "❤️";
-            heart.classList.add("heart");
-            document.body.appendChild(heart);
+       function closePopup() {
+    popup.style.display = "none"; // Đóng popup
+    createFloatingHearts(); // Gọi hàm tạo trái tim bay
+}
+
+function createFloatingHearts() {
+    for (let i = 0; i < 10; i++) { // Tạo 10 trái tim
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        
+        // Đặt vị trí ngẫu nhiên gần popup
+        let xOffset = Math.random() * 100 - 50; // Dịch trái/phải 50px
+        let yOffset = Math.random() * 20 - 10; // Dịch lên/xuống 10px
+        
+        heart.style.left = `calc(50% + ${xOffset}px)`;
+        heart.style.top = `calc(50% + ${yOffset}px)`;
+        heart.style.position = "fixed";
+        
+        document.body.appendChild(heart);
+        
+        // Xóa trái tim sau khi animation kết thúc
+        setTimeout(() => heart.remove(), 2000);
+    }
+            }
         }
     </script>
 </body>
