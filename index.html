@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -49,6 +50,21 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        @keyframes heartBeat {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        .heart {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1000px;
+            color: purple;
+            animation: heartBeat 1s infinite alternate;
+            text-shadow: 0 0 30px violet, 0 0 60px purple, 0 0 90px darkmagenta;
+        }
     </style>
 </head>
 <body>
@@ -60,7 +76,7 @@
     <!-- Popup -->
     <div id="popup" class="popup">
         <p>Tuyệt vời! Vậy mình cùng đi chơi nhé ❤️</p>
-        <button onclick="closePopup()"> Ấu cơ nhaa 😘</button>
+        <button onclick="closePopup(); showHeart();"> Ấu cơ nhaa 😘</button>
     </div>
 
     <script>
@@ -74,7 +90,7 @@
         }
 
         function closePopup() {
-            popup.style.display = "none"; //  popup
+            popup.style.display = "none";
         }
 
         function refuseLove() {
@@ -93,6 +109,13 @@
 
             // Tăng biến đếm
             disagreeCount++;
+        }
+
+        function showHeart() {
+            let heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
         }
     </script>
 </body>
